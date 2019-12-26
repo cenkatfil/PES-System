@@ -2,4 +2,4 @@
 
 - OK Kaayo
 - Hi Madam
-- F**k you Soler
+- Uhm madam
