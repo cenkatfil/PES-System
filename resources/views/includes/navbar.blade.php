@@ -24,6 +24,9 @@
                     </div>
                   </li>
             </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">Home</a>
+            </li>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
