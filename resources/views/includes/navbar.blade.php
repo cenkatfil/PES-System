@@ -16,11 +16,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Owner</a>
-                        <a class="dropdown-item" href="#">Vehicle</a>
+                        <a class="dropdown-item" href="{{ route('owner.index') }}">Owner</a>
+                        <a class="dropdown-item" href="{{ route('vehicle.index') }}">Vehicle</a>
                         <a class="dropdown-item" href="{{ route('manufacturer.index') }}">Manufacturer</a>
-                        <a class="dropdown-item" href="#">Series</a>
-                        <a class="dropdown-item" href="#">Body Type</a>
+                        <a class="dropdown-item" href="{{ route('series.index') }}">Series</a>
+                        <a class="dropdown-item" href="{{ route('body.index') }}">Body Type</a>
                     </div>
                   </li>
             </ul>

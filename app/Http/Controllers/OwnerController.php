@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Owner;
 use Illuminate\Http\Request;
-use App\Manufacturer;
-use App\Series;
 
-class SeriesController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = Series::all();
-        // $manu = Manufacturer::find($id);
-        // $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.index')->with('series', $series);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(10);
+        return view('manage.owner.index')->with('owners', $owners);
     }
 
     /**
@@ -29,7 +25,7 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.owner.create');
     }
 
     /**
@@ -41,38 +37,42 @@ class SeriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:1'
+            'lastname' => 'required|min:1',
+            'firstname' => 'required|min:1',
+            'address' => 'required|min:1',
+            'contact_no' => 'required|min:1',
+            'license_no' => 'required|min:1'
         ]);
-        
-        $series = new Series;
-        $series->manu_id = $request->manu_id;
-        $series->name = $request->name;
-        $series->save();
 
-        return redirect('series/' .$request->manu_id);
+        $own = new Owner;
+        $own->lastname = $request->lastname;
+        $own->firstname = $request->firstname;
+        $own->address = $request->address;
+        $own->contact_no = $request->contact_no;
+        $own->license_no = $request->license_no;
+        $own->save();
+
+        return redirect('owner');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Owner $owner)
     {
-        $manu = Manufacturer::find($id);
-        $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.show')->with('series', $series)->with('manu', $manu);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Owner $owner)
     {
         //
     }
@@ -81,10 +81,10 @@ class SeriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Owner $owner)
     {
         //
     }
@@ -92,16 +92,14 @@ class SeriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+        $own = Owner::find($id);
+        $own->delete();
 
-        $series = Series::find($id);
-        $series->delete();
-
-        return redirect('series');
-
+        return redirect('owner');
     }
 }

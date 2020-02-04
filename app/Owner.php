@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Series extends Model
+class Owner extends Model
 {
     protected $fillable = [
-        'name', 'manu_id', 'body_id',
+        'lastname', 'firstname', 'address', 'contact_no', 'license_no',
     ];
 }

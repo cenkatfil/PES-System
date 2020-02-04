@@ -15,7 +15,9 @@ class ManufacturersController extends Controller
      */
     public function index()
     {
-        $manufacturers = Manufacturer::all();
+        $manufacturers = Manufacturer::orderBy('created_at', 'desc')->paginate(5);
+
+        // return $manufacturers;
         return view('manage.manufacturer.index')->with('manufacturers', $manufacturers);
     }
 
@@ -67,7 +69,10 @@ class ManufacturersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $manu = Manufacturer::find($id);
+        $manufacturers = Manufacturer::orderBy('created_at', 'desc')->paginate(5);
+        // return $manu;
+        return view('manage.manufacturer.edit')->with('manufacturers', $manufacturers)->with('manu', $manu);
     }
 
     /**
@@ -79,7 +84,12 @@ class ManufacturersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        $manu = Manufacturer::find($id)->update([
+            'name' => $request->name
+        ]);
+        
+        return redirect('manufacturer');
     }
 
     /**

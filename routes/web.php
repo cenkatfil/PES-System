@@ -19,5 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('owner', 'OwnerController');
 Route::resource('manufacturer', 'ManufacturersController');
 Route::resource('series', 'SeriesController');
+Route::resource('body', 'BodiesController');
+Route::resource('vehicle', 'VehicleController');

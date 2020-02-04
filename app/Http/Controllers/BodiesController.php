@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Body;
 use App\Manufacturer;
 use App\Series;
 
-class SeriesController extends Controller
+class BodiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +16,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = Series::all();
-        // $manu = Manufacturer::find($id);
-        // $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.index')->with('series', $series);
+        $bodies = Body::all();
+        return view('manage.body_type.index')->with('bodies', $bodies);
     }
 
     /**
@@ -43,13 +41,12 @@ class SeriesController extends Controller
         $request->validate([
             'name' => 'required|min:1'
         ]);
-        
-        $series = new Series;
-        $series->manu_id = $request->manu_id;
-        $series->name = $request->name;
-        $series->save();
 
-        return redirect('series/' .$request->manu_id);
+        $bodies = new Body;
+        $bodies->name = $request->name;
+        $bodies->save();
+
+        return redirect('body');
     }
 
     /**
@@ -60,10 +57,7 @@ class SeriesController extends Controller
      */
     public function show($id)
     {
-        $manu = Manufacturer::find($id);
-        $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.show')->with('series', $series)->with('manu', $manu);
+        //
     }
 
     /**
@@ -97,11 +91,9 @@ class SeriesController extends Controller
      */
     public function destroy($id)
     {
+        $bodies = Body::find($id);
+        $bodies->delete();
 
-        $series = Series::find($id);
-        $series->delete();
-
-        return redirect('series');
-
+        return redirect('body');
     }
 }

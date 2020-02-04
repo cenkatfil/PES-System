@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Manufacturer;
-use App\Series;
 
-class SeriesController extends Controller
+class ReportsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = Series::all();
-        // $manu = Manufacturer::find($id);
-        // $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.index')->with('series', $series);
+        //
     }
 
     /**
@@ -40,16 +34,7 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:1'
-        ]);
-        
-        $series = new Series;
-        $series->manu_id = $request->manu_id;
-        $series->name = $request->name;
-        $series->save();
-
-        return redirect('series/' .$request->manu_id);
+        //
     }
 
     /**
@@ -60,10 +45,7 @@ class SeriesController extends Controller
      */
     public function show($id)
     {
-        $manu = Manufacturer::find($id);
-        $series = Series::where('manu_id', $id)->get();
-        // return $series;
-        return view('manage.series.show')->with('series', $series)->with('manu', $manu);
+        //
     }
 
     /**
@@ -97,11 +79,6 @@ class SeriesController extends Controller
      */
     public function destroy($id)
     {
-
-        $series = Series::find($id);
-        $series->delete();
-
-        return redirect('series');
-
+        //
     }
 }

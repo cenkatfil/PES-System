@@ -7,16 +7,17 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <p class="lead m-0"><span><i class="fa fa-edit"></i></span> Manufacturer</p>
+                        <p class="lead m-0"><span><i class="fa fa-edit"></i></span> Update Manufacturer</p>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('manufacturer.store') }}" method="POST">
+                        <form action="{{ route('manufacturer.update', $manu->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="name"><strong>Name</strong></label>
-                                <input type="text" class="form-control" placeholder="Manufacturer Name" name="name">
+                                <input type="text" class="form-control" placeholder="Manufacturer Name" name="name" value="{{ $manu->name }}">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Save">
+                            <input class="btn btn-primary" type="submit" value="Update">
                         </form>
                     </div>
                 </div>
