@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 class OwnerController extends Controller
 {
     /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */ 
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $owners = Owner::orderBy('created_at', 'desc')->paginate(10);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
         return view('manage.owner.index')->with('owners', $owners);
     }
 
@@ -52,7 +61,7 @@ class OwnerController extends Controller
         $own->license_no = $request->license_no;
         $own->save();
 
-        return redirect('owner');
+        return redirect('owner')->with('success', 'Successfully Added');
     }
 
     /**
@@ -72,9 +81,12 @@ class OwnerController extends Controller
      * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Owner $owner)
+    public function edit($id)
     {
-        //
+        $own = Owner::find($id);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
+        // return $manu;
+        return view('manage.owner.edit')->with('owners', $owners)->with('own', $own);
     }
 
     /**
@@ -84,9 +96,17 @@ class OwnerController extends Controller
      * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update(Request $request, $id)
     {
-        //
+        $own = Owner::find($id)->update([
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'address' => $request->address,
+            'contact_no' => $request->contact_no,
+            'license_no' => $request->license_no
+        ]);
+        
+        return redirect('owner')->with('success', 'Updated');
     }
 
     /**
@@ -100,6 +120,6 @@ class OwnerController extends Controller
         $own = Owner::find($id);
         $own->delete();
 
-        return redirect('owner');
+        return redirect('owner')->with('error', 'Deleted');
     }
 }

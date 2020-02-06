@@ -9,6 +9,15 @@ use App\Series;
 class SeriesController extends Controller
 {
     /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */ 
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -16,9 +25,7 @@ class SeriesController extends Controller
     public function index()
     {
         $series = Series::all();
-        // $manu = Manufacturer::find($id);
-        // $series = Series::where('manu_id', $id)->get();
-        // return $series;
+        $series = Series::orderBy('created_at', 'desc')->paginate(5);
         return view('manage.series.index')->with('series', $series);
     }
 
@@ -49,7 +56,7 @@ class SeriesController extends Controller
         $series->name = $request->name;
         $series->save();
 
-        return redirect('series/' .$request->manu_id);
+        return redirect('series/' .$request->manu_id)->with('success', 'Successfully Added');
     }
 
     /**
@@ -74,7 +81,10 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $manu = Manufacturer::find($id);
+        $series = Series::where('manu_id', $id)->get();
+        // $series = Series::orderBy('created_at', 'desc')->paginate(5);
+        return view('manage.series.edit')->with('series', $series)->with('manu', $manu);
     }
 
     /**
@@ -86,7 +96,13 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $manu = Manufacturer::find($id);
+        // $series = Series::where('manu_id', $id)->get();
+        $series = Series::where('manu_id', $id)->get()->update([
+            'name' => $request->name
+        ]);
+        
+        return redirect('series')->with('success', 'Updated');
     }
 
     /**
@@ -101,7 +117,7 @@ class SeriesController extends Controller
         $series = Series::find($id);
         $series->delete();
 
-        return redirect('series');
+        return redirect('series')->with('error', 'Deleted');
 
     }
 }

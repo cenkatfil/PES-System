@@ -43,6 +43,7 @@
                                     <tr>
                                         <td>{{ $body->name }}</td>
                                         <td>
+                                            <a href="{{ route('body.edit', $body->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
                                             <form class="d-inline" action="{{ route('body.destroy', $body->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -55,6 +56,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                        {{ $bodies->links() }}
                     </div>
                 </div>
             </div>

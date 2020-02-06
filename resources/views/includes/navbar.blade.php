@@ -23,10 +23,10 @@
                         <a class="dropdown-item" href="{{ route('body.index') }}">Body Type</a>
                     </div>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Reports</a>
+                  </li>
             </ul>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">Home</a>
-            </li>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

@@ -10,6 +10,15 @@ use App\Series;
 class BodiesController extends Controller
 {
     /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */ 
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,6 +26,7 @@ class BodiesController extends Controller
     public function index()
     {
         $bodies = Body::all();
+        $bodies = Body::orderBy('created_at', 'desc')->paginate(5);
         return view('manage.body_type.index')->with('bodies', $bodies);
     }
 
@@ -46,7 +56,7 @@ class BodiesController extends Controller
         $bodies->name = $request->name;
         $bodies->save();
 
-        return redirect('body');
+        return redirect('body')->with('success', 'Successfully Added');
     }
 
     /**
@@ -68,7 +78,9 @@ class BodiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $body = Body::find($id);
+        $bodies = Body::orderBy('created_at', 'desc')->paginate(5);
+        return view('manage.body_type.edit')->with('body', $body)->with('bodies', $bodies);
     }
 
     /**
@@ -80,7 +92,12 @@ class BodiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+                // return $request;
+                $bodies = Body::find($id)->update([
+                    'name' => $request->name
+                ]);
+                
+                return redirect('body')->with('success', 'Updated');
     }
 
     /**
@@ -94,6 +111,6 @@ class BodiesController extends Controller
         $bodies = Body::find($id);
         $bodies->delete();
 
-        return redirect('body');
+        return redirect('body')->with('error', 'Deleted');
     }
 }

@@ -9,6 +9,15 @@ use App\Series;
 class ManufacturersController extends Controller
 {
     /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */ 
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,7 +56,7 @@ class ManufacturersController extends Controller
         $manu->name = $request->name;
         $manu->save();
 
-        return redirect('manufacturer');
+        return redirect('manufacturer')->with('success', 'Successfully Added');
     }
 
     /**
@@ -89,7 +98,7 @@ class ManufacturersController extends Controller
             'name' => $request->name
         ]);
         
-        return redirect('manufacturer');
+        return redirect('manufacturer')->with('success', 'Updated');
     }
 
     /**
@@ -103,6 +112,6 @@ class ManufacturersController extends Controller
         $manu = Manufacturer::find($id);
         $manu->delete();
 
-        return redirect('manufacturer');
+        return redirect('manufacturer')->with('error', 'Deleted');
     }
 }

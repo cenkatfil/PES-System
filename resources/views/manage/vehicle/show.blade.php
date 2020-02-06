@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
     {{-- <a href="{{ route('vehicle.create') }}" class="btn btn-secondary mb-3"><i class="fas fa-plus-square"></i> New Vehicle</a> --}}
-        <h2 class="mb-3"><span><i class="fas fa-user-friends"></i></span> Vehicles of {{ $owner->firstname }}</h2>
+        <h2 class="mb-3"><span><i class="fas fa-car"></i></span> Vehicles of {{ $owner->firstname }}</h2>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <p class="lead m-0"><i class="fas fa-plus-square"></i></span> Add Owner</p>
+                        <p class="lead m-0"><i class="fas fa-plus-square"></i></span> Add Vehicle</p>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('vehicle.store') }}" method="POST">
@@ -78,7 +78,7 @@
                     <div class="card-header p-0">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item lead"><a href="#"><i class="far fa-folder-open"></i> Manage</a></li>
-                            <li class="breadcrumb-item lead" aria-current="page"><i class="fas fa-user-friends"></i> Vehicles</li>
+                            <li class="breadcrumb-item lead" aria-current="page"><i class="fas fa-car"></i> Vehicles</li>
                           </ol>
                     </div>
                     <div class="card-body p-0">
@@ -96,6 +96,7 @@
                                     <th>Series</th>
                                     <th>Body Type</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,7 +113,10 @@
                                         <td>{{ $vehicle->series }}</td>
                                         <td>{{ $vehicle->body_type }}</td>
                                         <td>
-                                            <form action="" method="POST">
+                                         <a href="{{ route('vehicle.edit', $vehicle->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('vehicle.destroy', $vehicle->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
 

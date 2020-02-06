@@ -2,24 +2,23 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('manufacturer.index') }}" class="btn btn-secondary mb-3"><i class="fa fa-arrow-circle-left"></i> Go Back</a>
-        <h2 class="mb-3"><span><i class="fa fa-file-text-o"></i></span> Series</h2>
+        {{-- <a href="{{ route('manufacturer.index') }}" class="btn btn-secondary mb-3"><i class="fa fa-arrow-circle-left"></i> Go Back</a> --}}
+        <h2 class="mb-3"><span><i class="fas fa-car"></i></span> Body Type</h2>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <p class="lead m-0"><span><i class="fa fa-edit"></i></span> Add Series  </p>
+                        <p class="lead m-0"><span><i class="fa fa-edit"></i></span> Update Body Type</p>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('series.store') }}" method="POST">
+                        <form action="{{ route('body.update', $body->id) }}" method="POST">
                             @csrf
-                            <input type="hidden" name="manu_id" value="{{ $manu->id }}">
-
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="name"><strong>Name</strong></label>
-                                <input type="text" class="form-control" placeholder="Series Name" name="name">
+                                <input type="text" class="form-control" placeholder="Body Type Name" name="name" value="{{ $body->name }}">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Save">
+                            <input class="btn btn-primary" type="submit" value="Update">
                         </form>
                     </div>
                 </div>
@@ -28,9 +27,8 @@
                 <div class="card">
                     <div class="card-header p-0">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item lead"><a href="#"><i class="far fa-folder-open"> Manage</i></a></li>
-                            <li class="breadcrumb-item lead"><a href="{{ route('manufacturer.index') }}"><i class="fa fa-file-text-o"></i> Manufacturer</a></li>
-                            <li class="breadcrumb-item lead" aria-current="page"><i class="fab fa-staylinked"></i> Series</li>
+                            <li class="breadcrumb-item lead"><a href="#"><i class="far fa-folder-open"></i> Manage</a></li>
+                            <li class="breadcrumb-item lead" aria-current="page"><i class="fas fa-car"></i> Body</li>
                           </ol>
                     </div>
                     <div class="card-body p-0">
@@ -42,12 +40,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($series as $ser)
+                                @foreach ($bodies as $body)
                                     <tr>
-                                        <td>{{ $ser->name }}</td>
+                                        <td>{{ $body->name }}</td>
                                         <td>
-                                            <a href="{{ route('series.edit', $ser->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                                            <form class="d-inline" action="{{ route('series.destroy', $ser->id) }}" method="POST">
+                                            <a href="{{ route('body.edit', $body->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                            <form class="d-inline" action="{{ route('body.destroy', $body->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
 
@@ -60,9 +58,9 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- <div class="mt-3 d-flex justify-content-center">
-                        {{ $series->links() }}
-                    </div> --}}
+                    <div class="mt-3 d-flex justify-content-center">
+                        {{ $bodies->links() }}
+                    </div>
                 </div>
             </div>
         </div>

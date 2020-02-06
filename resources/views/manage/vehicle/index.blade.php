@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
     
-        <h2 class="mb-3"><span><i class="fas fa-user-friends"></i></span> Vehicles</h2>
+        <h2 class="mb-3"><span><i class="fas fa-car"></i></span> Vehicles</h2>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header p-0">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item lead"><a href="#"><i class="far fa-folder-open"></i> Manage</a></li>
-                            <li class="breadcrumb-item lead" aria-current="page"><i class="fas fa-user-friends"></i> Vehicles</li>
+                            <li class="breadcrumb-item lead" aria-current="page"><i class="fas fa-car"></i> Vehicles</li>
                           </ol>
                     </div>
                     <div class="card-body p-0">
@@ -59,6 +59,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                        {{ $vehicles->links() }}
                     </div>
                 </div>
             </div>

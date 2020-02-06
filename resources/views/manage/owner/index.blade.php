@@ -34,6 +34,7 @@
                                         <td>{{ $own->contact_no }}</td>
                                         <td>{{ $own->license_no }}</td>
                                         <td>
+                                            <a href="{{ route('owner.edit', $own->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
                                             <a href="{{ route('vehicle.show', $own->id) }}" class="btn btn-outline-primary"><i class="fa fa-car"></i></a>
                                             <form action="{{ route('owner.destroy', $own->id) }}" method="POST" class="d-inline">
                                                 @method('DELETE')
@@ -46,6 +47,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                        {{ $owners->links() }}
                     </div>
                 </div>
             </div>

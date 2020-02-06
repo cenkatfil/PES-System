@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+        /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */ 
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +26,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::all();
-        $owners = Owner::all();
+        $vehicles = Vehicle::orderBy('created_at', 'desc')->paginate(5);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
         return view('manage.vehicle.index')->with('vehicles', $vehicles)->with('owners', $owners);
     }
 
@@ -67,7 +76,7 @@ class VehicleController extends Controller
         $vehicle->series = $request->series;
         $vehicle->save();
 
-        return redirect('vehicle/' .$vehicle->owner_id);
+        return redirect('vehicle/' .$vehicle->owner_id)->with('success', 'Successfully Added');
     }
 
     /**
@@ -95,7 +104,12 @@ class VehicleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner = Owner::find($id);
+        $vehicles = Vehicle::where('owner_id', $owner->id)->get();
+        $manus = Manufacturer::all();
+        $series = Series::all();
+        $body_types = Body::all();
+        return view('manage.vehicle.edit')->with('vehicles', $vehicles)->with('manus', $manus)->with('series', $series)->with('body_types', $body_types)->with('owner', $owner);
     }
 
     /**
@@ -107,7 +121,11 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vehicle = Vehicle::find($id)->update([
+            'name' => $request->name
+        ]);
+        
+        return redirect('vehicle')->with('success', 'Updated');
     }
 
     /**
@@ -118,6 +136,9 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vehicles = Vehicle::find($id);
+        $vehicles->delete();
+
+        return redirect('vehicle')->with('error', 'Deleted');
     }
 }
