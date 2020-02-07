@@ -10,17 +10,17 @@
         <div class="col-lg-4">
           <img src="/img/soler.jpg" alt="Avatar" width="140" height="140" style="border-radius: 50%;">
           <h2>Franz Rhey Hisoler</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p>-21 years old <br> -Bachelor of Science Major in Computer Engineering <br> -Assigned to pull off most of the hardware part.</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img src="/img/cel.jpg" alt="Avatar" width="140" height="140" style="border-radius: 50%;">
           <h2>Cecille Velasco</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+          <p>-21 years old <br> -Bachelor of Science Major in Computer Engineering <br> -Assigned to mobile development.</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img src="/img/cen.jpg" alt="Avatar" width="140" height="140" style="border-radius: 50%;">
           <h2>Cen Katfil Dayondon</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>-21 years old <br> -Bachelor of Science Major in Computer Engineering <br> -Assigned to engineer arduino programs and web development. <br> -Supporting both hardware and software.</p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
   
