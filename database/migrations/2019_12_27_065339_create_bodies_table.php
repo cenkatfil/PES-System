@@ -16,12 +16,10 @@ class CreateBodiesTable extends Migration
         Schema::create('bodies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('manu_id');
-            $table->integer('series_id');
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
