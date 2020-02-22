@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $ser->name }}</td>
                                         <td>
-                                            <a href="{{ route('series.edit', $ser->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                            {{-- <a href="{{ route('series.edit', $ser->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a> --}}
                                             <form class="d-inline" action="{{ route('series.destroy', $ser->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf

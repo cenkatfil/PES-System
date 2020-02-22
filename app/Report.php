@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $fillable = [
-        'dname', 'manu_id', 'body_id',
+        'hc', 'co', 'oname', 'plate_no', 'status', 'name', 'sOfficerName'
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

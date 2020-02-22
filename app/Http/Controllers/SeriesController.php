@@ -50,13 +50,15 @@ class SeriesController extends Controller
         $request->validate([
             'name' => 'required|min:1'
         ]);
-        
+        // return $request;
         $series = new Series;
         $series->manu_id = $request->manu_id;
         $series->name = $request->name;
         $series->save();
-
+        
+        // return 'ok';
         return redirect('series/' .$request->manu_id)->with('success', 'Successfully Added');
+        // return redirect('series/' .$request->manu_id);
     }
 
     /**

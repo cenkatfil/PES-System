@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-    {{-- <a href="{{ route('vehicle.create') }}" class="btn btn-secondary mb-3"><i class="fas fa-plus-square"></i> New Vehicle</a> --}}
+        <a href="{{ route('owner.index') }}" class="btn btn-secondary mb-3"><i class="fa fa-arrow-circle-left"></i> Go Back</a>
         <h2 class="mb-3"><span><i class="fas fa-car"></i></span> Vehicles of {{ $owner->firstname }}</h2>
         <div class="row">
             <div class="col-lg-12">
@@ -113,7 +113,7 @@
                                         <td>{{ $vehicle->series }}</td>
                                         <td>{{ $vehicle->body_type }}</td>
                                         <td>
-                                         <a href="{{ route('vehicle.edit', $vehicle->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                         {{-- <a href="{{ route('vehicle.edit', $vehicle->id) }}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a> --}}
                                         </td>
                                         <td>
                                             <form action="{{ route('vehicle.destroy', $vehicle->id) }}" method="POST">

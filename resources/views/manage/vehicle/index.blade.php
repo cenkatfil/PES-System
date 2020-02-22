@@ -35,7 +35,7 @@
                                 @foreach ($owners as $owner)
                                 @if ($vehicle->owner_id == $owner->id)
                                     <tr>
-                                        <td>{{ $owner->lastname }} {{ $owner->firstname }}</td>
+                                        <td>{{ $owner->lastname }}, {{ $owner->firstname }}</td>
                                         <td>{{ $vehicle->plate_no }}</td>
                                         <td>{{ $vehicle->displacement }}</td>
                                         <td>{{ $vehicle->cylinders }}</td>

@@ -16,28 +16,38 @@
                         <table class="table table-striped m-0">
                             <thead>
                                 <tr>
-                                    <th>Officer</th>
-                                    <th>Driver's Name</th>
+                                    <th>Owner</th>
                                     <th>Plate No.</th>
+                                    <th>Displacement</th>
+                                    <th>Cylinders</th>
+                                    <th>Fuel</th>
+                                    <th>OR No.</th>
+                                    <th>CR No.</th>
+                                    <th>Manufacturer</th>
+                                    <th>Series</th>
+                                    <th>Body Type</th>
                                     <th>Status</th>
-                                    <th>HC</th>
-                                    <th>CO</th>
                                     <th>Date</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reports as $report)
+                                {{-- @foreach ($vehicle_reports as $vr) --}}
                                             <tr>
-                                                <td>{{ $report->sOfficerName }}</td>
-                                                <td>{{ $report->driver }}</td>
-                                                <td>{{ $report->plate_no }}</td>
-                                                <td>{{ $report->status }}</td>
-                                                <td>{{ $report->hc }}</td>
-                                                <td>{{ $report->co }}</td>
+                                                <td>{{ $vehicle_reports->owner_id }}</td>
+                                                {{-- <td>{{ $owner_reports->lastname }}, {{ $owner_reports->firstname }}</td> --}}
+                                                <td>{{ $vehicle_reports->plate_no }}</td>
+                                                <td>{{ $vehicle_reports->displacement }}</td>
+                                                <td>{{ $vehicle_reports->cylinders }}</td>
+                                                <td>{{ $vehicle_reports->fuel }}</td>
+                                                <td>{{ $vehicle_reports->or_no }}</td>
+                                                <td>{{ $vehicle_reports->cr_no }}</td>
+                                                <td>{{ $vehicle_reports->manufacturer }}</td>
+                                                <td>{{ $vehicle_reports->series }}</td>
+                                                <td>{{ $vehicle_reports->body_type }}</td>
+                                                <td>{{ $status }}</td>
                                                 <td>{{ $report->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ route('report.show', $report->id) }}" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
                                                     <form action="" method="POST" class="d-inline">
                                                         @method('DELETE')
                                                         @csrf
@@ -46,13 +56,16 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
                                
                             </tbody>
                         </table>
                     </div>
                     <div class="mt-3 d-flex justify-content-center">
-                        {{ $reports->links() }}
+                        {{-- {{ $reports->links() }} --}}
+                        <img src="http://222.234.0.28/~cebudiytech_WEB/ucmain_smoke_emission/imgs/report_{{ $report->id }}.jpg"
+                         alt="">
+            
                     </div>
                 </div>
             </div>

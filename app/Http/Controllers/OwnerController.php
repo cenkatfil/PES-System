@@ -23,7 +23,7 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(10);
         return view('manage.owner.index')->with('owners', $owners);
     }
 
@@ -84,7 +84,7 @@ class OwnerController extends Controller
     public function edit($id)
     {
         $own = Owner::find($id);
-        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
+        $owners = Owner::orderBy('created_at', 'desc')->paginate(10);
         // return $manu;
         return view('manage.owner.edit')->with('owners', $owners)->with('own', $own);
     }
