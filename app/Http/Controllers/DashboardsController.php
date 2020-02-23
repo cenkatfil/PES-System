@@ -34,4 +34,12 @@ class DashboardsController extends Controller
 
         return view('dashboard')->with('reports', $reports)->with('user', $user);
     }
+
+    public function destroy($id)
+    {
+        $reports = Report::find($id);
+        $reports->delete();
+
+        return redirect('dashboard')->with('error', 'Deleted');
+    }
 }

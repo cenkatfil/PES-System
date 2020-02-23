@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ route('report.index') }}" class="btn btn-secondary mb-3"><i class="fa fa-arrow-circle-left"></i> Go Back</a>
         <h2 class="mb-3"><span><i class="fas fa-file-signature"></i></span> Reports</h2>
         <div class="row">
             <div class="col-lg-12">
@@ -22,25 +23,35 @@
                                     <th>Cylinders</th>
                                     <th>Fuel</th>
                                     <th>OR No.</th>
-                                    <th>CR No.</th>
-                                    <th>Manufacturer</th>
-                                    <th>Series</th>
-                                    <th>Body Type</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
                                     <th></th>
                                 </tr>
                             </thead>
+                                <tr>
+                                    {{-- <td>{{ $vehicle_reports->owner_id }}</td> --}}
+                                    <td>{{ $owner_name->lastname }}, {{ $owner_name->firstname }}</td>
+                                    <td>{{ $vehicle_reports->plate_no }}</td>
+                                    <td>{{ $vehicle_reports->displacement }}</td>
+                                    <td>{{ $vehicle_reports->cylinders }}</td>
+                                    <td>{{ $vehicle_reports->fuel }}</td>
+                                    <td>{{ $vehicle_reports->or_no }}</td>
+                                    <td></td>
+                                </tr>
+                                
+                            
                             <tbody>
                                 {{-- @foreach ($vehicle_reports as $vr) --}}
+                                <thead>
                                             <tr>
-                                                <td>{{ $vehicle_reports->owner_id }}</td>
-                                                {{-- <td>{{ $owner_reports->lastname }}, {{ $owner_reports->firstname }}</td> --}}
-                                                <td>{{ $vehicle_reports->plate_no }}</td>
-                                                <td>{{ $vehicle_reports->displacement }}</td>
-                                                <td>{{ $vehicle_reports->cylinders }}</td>
-                                                <td>{{ $vehicle_reports->fuel }}</td>
-                                                <td>{{ $vehicle_reports->or_no }}</td>
+                                                <th>CR No.</th>
+                                                <th>Manufacturer</th>
+                                                <th>Series</th>
+                                                <th>Body Type</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th></th>
+                                            </tr>
+                                </thead>
+                                            <tr>
                                                 <td>{{ $vehicle_reports->cr_no }}</td>
                                                 <td>{{ $vehicle_reports->manufacturer }}</td>
                                                 <td>{{ $vehicle_reports->series }}</td>
@@ -48,12 +59,12 @@
                                                 <td>{{ $status }}</td>
                                                 <td>{{ $report->created_at }}</td>
                                                 <td>
-                                                    <form action="" method="POST" class="d-inline">
+                                                    {{-- <form action="{{ route('report.destroy', $report->id) }}" method="POST" class="d-inline">
                                                         @method('DELETE')
                                                         @csrf
-
+        
                                                         <button class="btn btn-outline-danger" type="submit"><i class="fa fa-close"></i></button>
-                                                    </form>
+                                                    </form> --}}
                                                 </td>
                                             </tr>
                                 {{-- @endforeach --}}

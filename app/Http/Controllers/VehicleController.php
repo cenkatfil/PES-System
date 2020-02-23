@@ -26,8 +26,10 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::orderBy('created_at', 'desc')->paginate(5);
-        $owners = Owner::orderBy('created_at', 'desc')->paginate(5);
+        // $vehicles = Vehicle::orderBy('created_at', 'desc');
+        // $owners = Owner::orderBy('created_at', 'desc');
+        $vehicles = Vehicle::all();
+        $owners = Owner::all();
         return view('manage.vehicle.index')->with('vehicles', $vehicles)->with('owners', $owners);
     }
 

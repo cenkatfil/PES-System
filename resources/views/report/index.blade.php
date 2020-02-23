@@ -38,7 +38,7 @@
                                                 <td>{{ $report->created_at }}</td>
                                                 <td>
                                                     <a href="{{ route('report.show', $report->id) }}" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
-                                                    <form action="" method="POST" class="d-inline">
+                                                    <form action="{{ route('report.destroy', $report->id) }}" method="POST" class="d-inline">
                                                         @method('DELETE')
                                                         @csrf
 

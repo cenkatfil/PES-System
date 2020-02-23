@@ -44,12 +44,12 @@
                                             <td>
                                                 {{-- <a href="" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a> --}}
                                                 <a href="" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
-                                                {{-- <form action="" method="POST" class="d-inline">
+                                                <form action="{{ route('report.destroy', $report->id) }}" method="POST" class="d-inline">
                                                     @method('DELETE')
                                                     @csrf
 
                                                     <button class="btn btn-outline-danger" type="submit"><i class="fa fa-close"></i></button>
-                                                </form> --}}
+                                                </form>
                                             </td>
                                         </tr>
                                     @endif

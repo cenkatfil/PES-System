@@ -61,7 +61,7 @@
                         </table>
                     </div>
                     <div class="mt-3 d-flex justify-content-center">
-                        {{ $vehicles->links() }}
+                        {{-- {{ $vehicles->links() }} --}}
                     </div>
                 </div>
             </div>

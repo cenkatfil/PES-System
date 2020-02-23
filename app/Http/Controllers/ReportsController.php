@@ -59,13 +59,14 @@ class ReportsController extends Controller
         $vehicle_plate_no = $report->plate_no;
         $vehicle = Vehicle::where('plate_no', $vehicle_plate_no)->get();
         $vehicle_reports = $vehicle[0];
-        // $owner_plate_no = $report->owner;
-        // $owner = Owner::where('id', $owner_plate_no)->get();
-        // $owner_reports = $owner[0];
-        // return $vehicle_reports;
+        // $owners_name = $vehicle_reports->owner_id;
+        // $owners = Owner::where('lastname', $owners_name)->get();
+        // $owners_reports = $owners[0];
+        $owner_id = $vehicle_reports->owner_id;
+        $owner = Owner::where('id', $owner_id)->get();
+        $owner_name = $owner[0];
 
-
-        return view('report.show')->with('vehicle_reports', $vehicle_reports)->with('status', $report->status)->with('report', $report);
+        return view('report.show')->with('vehicle_reports', $vehicle_reports)->with('status', $report->status)->with('report', $report)->with('owner_name', $owner_name);
 
     }
 
@@ -100,6 +101,9 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reports = Report::find($id);
+        $reports->delete();
+
+        return redirect('report')->with('error', 'Deleted');
     }
 }
