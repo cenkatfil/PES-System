@@ -25,3 +25,4 @@ Route::resource('series', 'SeriesController');
 Route::resource('body', 'BodiesController');
 Route::resource('vehicle', 'VehicleController');
 Route::resource('report', 'ReportsController');
+Route::get('/search', 'ReportsController@search');

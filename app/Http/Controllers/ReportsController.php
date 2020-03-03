@@ -26,6 +26,12 @@ class ReportsController extends Controller
         return view('report.index')->with('reports', $reports);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $reports = Report::where('plate_no', 'like','%'.$search.'%')->paginate(5);
+        return view('report.index')->with('reports', $reports);
+    }
     /**
      * Show the form for creating a new resource.
      *

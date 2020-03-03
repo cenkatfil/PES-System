@@ -3,6 +3,16 @@
 @section('content')
     <div class="container">
         <h2 class="mb-3"><span><i class="fas fa-file-signature"></i></span> Reports</h2>
+        {{-- <div class = "col-md-4 p-3 m-1 "> --}}
+            <form action="/search" method="get">
+                <div class = "input-group">
+                    <input type = "search" name="search" class="form-control">
+                    <span class ="input-group-prepend">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </span>
+                </div>
+            </form>
+        {{-- </div> --}}
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -22,6 +32,7 @@
                                     <th>Status</th>
                                     <th>HC</th>
                                     <th>CO</th>
+                                    <th>Result</th>
                                     <th>Date</th>
                                     <th></th>
                                 </tr>
@@ -35,6 +46,13 @@
                                                 <td>{{ $report->status }}</td>
                                                 <td>{{ $report->hc }}</td>
                                                 <td>{{ $report->co }}</td>
+                                                {{-- <td>{{ $report->results}}</td> --}}
+                                                @if (($report->hc > 5833) || ($report->co > 5))
+                                                    <td>FAIL</td>
+                                                @else
+                                                    <td>PASS</td>
+                                                @endif
+                                                <!--td>{{$report->hc}} </td-->
                                                 <td>{{ $report->created_at }}</td>
                                                 <td>
                                                     <a href="{{ route('report.show', $report->id) }}" class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
